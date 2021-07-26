@@ -4,16 +4,19 @@
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
-// Il computer deve generare 16 numeri casuali (le nostre bombe) tra 1 e 100.
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+// Il computer deve generare 16 numeri casuali (le nostre bombe) tra 1 e 100.
 // I numeri non possono essere duplicati.
-for (var i = 0; i < 16; i++) {
-    do {
-        var rndNum = getRndInteger(1, 100);
-    } while (rndNum - rndNum != 0);
-    console.log(rndNum);
+var bombe = [];
+while (bombe.length != 16) {
+    rndNum = getRndInteger(1, 100);
+    if (bombe.includes(rndNum) == false) {
+        bombe.push(rndNum);
+        console.log (rndNum);
+    }
 }
+
 
