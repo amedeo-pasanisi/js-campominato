@@ -1,14 +1,53 @@
 var idCampo = document.getElementById("campo")
 creaCampo(100);
 
+var bombe = creaBombe(16, 1, 100);
+console.log(bombe);
+
 idCampo.addEventListener("click",
     function(e) {
-        console.log(e.target.dataset.cella);
         let element = document.querySelectorAll("[data-cella='" + e.target.dataset.cella + "']")
-        console.log(element[0]);
         element[0].classList.add("red");
     }
 )
+
+// FUNZIONI
+function creaCampo(celle) {
+    for (let i = 1; i <= celle; i++) {
+        // creo un div "cella" numerato in base al numero di cicli (i)
+        let cella = `
+        <div data-cella="${i}" class="cella"></div>
+        `;
+        // creo un div
+        let spazioCella = document.createElement("div");
+        // e lo chiamo "quadrato"
+        spazioCella.classList.add("quadrato")
+        // inserisco dentro "quadrato" il div "cella"
+        spazioCella.innerHTML = cella;
+        // inserisco il div "quadrato" dentro il div "campo"
+        idCampo.appendChild(spazioCella);
+
+        // ripeto il tutto per il numero "celle" che mi servono
+    }
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+// creo un array "bombe" con un certo numero di numeri "bomba" in un range di numeri che va da min a max
+function creaBombe(numeroBombe, min, max) {
+    let bombe = [];
+    while (bombe.length < numeroBombe) {
+        let bomba = getRndInteger(min, max);
+        if (bombe.includes(bomba) == false) {
+            bombe.push(bomba);
+        }
+    }
+    //ordino numericamente le bombe
+    bombe.sort(function(a, b){return a - b});
+    return bombe;
+}
 
 
 // // Il computer deve generare 16 numeri casuali (le nostre bombe) tra 1 e 100.
@@ -54,22 +93,3 @@ idCampo.addEventListener("click",
 //     console.log(numUtente + " è una bomba");
 //     console.log("partita conclusa, hai totalizzato " + punteggio + " punti");
 // }
-
-// FUNZIONI
-
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-}
-
-function creaCampo(celle) {
-    for (let i = 1; i <= celle; i++) {
-        let cella = `
-        <div data-cella="${i}" class="cella"></div>
-        `;
-
-        let spazioCella = document.createElement("div");
-        spazioCella.classList.add("quadrato")
-        spazioCella.innerHTML = cella;
-        idCampo.appendChild(spazioCella);
-    }
-}
