@@ -7,7 +7,12 @@ console.log(bombe);
 idCampo.addEventListener("click",
     function(e) {
         let element = document.querySelectorAll("[data-cella='" + e.target.dataset.cella + "']")
-        element[0].classList.add("red");
+        let numeroCella = parseInt(e.target.dataset.cella);
+        if (bombe.includes(numeroCella) == false) {
+            element[0].classList.add("green");
+        } else {
+            element[0].classList.add("red");
+        }
     }
 )
 
@@ -93,3 +98,11 @@ function creaBombe(numeroBombe, min, max) {
 //     console.log(numUtente + " è una bomba");
 //     console.log("partita conclusa, hai totalizzato " + punteggio + " punti");
 // }
+
+// idCampo.addEventListener("click",
+//     function(e) {
+//         let element = document.querySelectorAll("[data-cella='" + e.target.dataset.cella + "']")
+//         console.log(e.target.dataset.cella)
+//         console.log(element[0])
+//     }
+// )

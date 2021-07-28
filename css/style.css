@@ -27,5 +27,9 @@
 }
 
 .red {
-    background-color: red;
+    background-color: rgb(243, 67, 67);
+}
+
+.green {
+    background-color: lightgreen;
 }
